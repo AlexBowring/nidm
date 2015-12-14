@@ -16,7 +16,7 @@ NIDMRESULTSPATH = os.path.dirname(RELPATH)
 sys.path.append(os.path.join(NIDMRESULTSPATH, os.pardir, os.pardir, "scripts"))
 from Constants import STATO_GLS_STR, STATO_GLS_LABEL, STATO_TSTATISTIC_STR, \
     STATO_ZSTATISTIC_STR, STATO_TSTATISTIC_LABEL, STATO_ZSTATISTIC_LABEL, \
-    NIDM_EVENT_RELATED_DESIGN, OBO_P_VALUE_FWER_QNAME, OBO_STATISTIC_QNAME
+    OBO_P_VALUE_FWER_QNAME, OBO_STATISTIC_QNAME
 
 
 def main():
@@ -24,13 +24,12 @@ def main():
         "DesignMatrix_1stLevel": dict(
             design_matrix_id='niiri:design_matrix_id',
             label="Design Matrix",
-            location="file://./DesignMatrix.csv",
+            location="DesignMatrix.csv",
             format="text/csv",
             filename="DesignMatrix.csv",
             design_matrix_png_id="niiri:design_matrix_png_id",
             regressors="[\\\"Gen\\\", \\\"Gen*temporal_derivative\\\""
             ", \\\"Shad\\\", \\\"Shad*temporal_derivative\\\"]",
-            design="nidm:"+str(NIDM_EVENT_RELATED_DESIGN).split("#")[1],
             hrf_basis="fsl:FSL_0000001",
             drift_model="niiri:drift_model_id"),
         "FSL_DriftModel": dict(
@@ -40,7 +39,7 @@ def main():
             ),
         "Image-DesignMatrix": dict(
             image_id="niiri:design_matrix_png_id",
-            location="file://./DesignMatrix.png",
+            location="DesignMatrix.png",
             filename="DesignMatrix.png",
             format="image/png"
             ),
@@ -73,28 +72,28 @@ def main():
             label="Parameter estimate 1",
             format="image/nifti",
             coordinate_space_id="niiri:coordinate_space_id_1",
-            sha="e43b6e01b0463fe7d40782137867a...",
+            sha="e43b6e01b0463fe7d40782137867a",
             param_est_id="niiri:model_parameters_estimation_id"),
         "ParameterEstimateMap-2": dict(
             beta_map_id="niiri:beta_map_id_2",
             label="Parameter estimate 2",
             format="image/nifti",
             coordinate_space_id="niiri:coordinate_space_id_1",
-            sha="e43b6e01b0463fe7d40782137867a...",
+            sha="e43b6e01b0463fe7d40782137867a",
             param_est_id="niiri:model_parameters_estimation_id"),
         "ParameterEstimateMap-3": dict(
             beta_map_id="niiri:beta_map_id_3",
             label="Parameter estimate 3",
             format="image/nifti",
             coordinate_space_id="niiri:coordinate_space_id_1",
-            sha="e43b6e01b0463fe7d40782137867a...",
+            sha="e43b6e01b0463fe7d40782137867a",
             param_est_id="niiri:model_parameters_estimation_id"),
         "ParameterEstimateMap-4": dict(
             beta_map_id="niiri:beta_map_id_4",
             label="Parameter estimate 4",
             format="image/nifti",
             coordinate_space_id="niiri:coordinate_space_id_1",
-            sha="e43b6e01b0463fe7d40782137867a...",
+            sha="e43b6e01b0463fe7d40782137867a",
             param_est_id="niiri:model_parameters_estimation_id"),
         "CoordinateSpace": dict(
             coordinate_space_id="niiri:coordinate_space_id_1",
@@ -109,7 +108,7 @@ def main():
         "ResidualMeanSquaresMap": dict(
             residual_mean_squares_map_id="niiri:residual_mean_squares_map_id",
             label="Residual Mean Squares Map",
-            location="file://./ResidualMeanSquares.nii.gz",
+            location="ResidualMeanSquares.nii.gz",
             filename="ResidualMeanSquares.nii.gz",
             format="image/nifti",
             coordinate_space_id="niiri:coordinate_space_id_1",
@@ -119,7 +118,7 @@ def main():
         "MaskMap_Analysis": dict(  # Analysis mask
             mask_id="niiri:mask_id_1",
             label="Mask",
-            location="file://./Mask.nii.gz",
+            location="Mask.nii.gz",
             filename="Mask.nii.gz",
             user_defined="false",
             format="image/nifti",
@@ -149,7 +148,7 @@ fe9bfae278c7fc372b65cac7232ea58fd8fb5914014e7b9a5d6200592b12b2a728b",
         "ContrastMap": dict(
             contrast_map_id="niiri:contrast_map_id_1",
             label="Contrast Map: Generation",
-            location="file://./Contrast.nii.gz",
+            location="Contrast.nii.gz",
             format="image/nifti",
             filename="Contrast.nii.gz",
             contrast_name="Generation",
@@ -161,7 +160,7 @@ fe9bfae278c7fc372b65cac7232ea58fd8fb5914014e7b9a5d6200592b12b2a728b",
             contrast_standard_error_map_id="niiri:contrast_standard_error_map\
 _id_1",
             label="Contrast Standard Error Map",
-            location="file://./ContrastStandardError.nii.gz",
+            location="ContrastStandardError.nii.gz",
             format="image/nifti",
             filename="ContrastStandardError.nii.gz",
             coordinate_space_id="niiri:coordinate_space_id_1",
@@ -180,7 +179,7 @@ d68718757dc7af78eb1e86617a41e6c9f55161f756d184e2b0fb06c3d419dc99856",
         "StatisticMap": dict(
             statistic_map_id="niiri:statistic_map_id_1",
             label="Statistic Map: Generation",
-            location="file://./TStatistic.nii.gz",
+            location="TStatistic.nii.gz",
             format="image/nifti",
             filename="TStatistic.nii.gz",
             statistic_type=STATO_TSTATISTIC_STR,
@@ -195,7 +194,7 @@ fb8a4d8f72b8af22c4ffb40c860bfb65940c87b03a7336cdf1a665f9cb07a5c2527",
         "StatisticMap-Z": dict(
             statistic_map_id="niiri:z_statistic_map_id_1",
             label="Z-Statistic Map: Generation",
-            location="file://./ZStatistic.nii.gz",
+            location="ZStatistic.nii.gz",
             format="image/nifti",
             filename="ZStatistic.nii.gz",
             statistic_type=STATO_ZSTATISTIC_STR,
@@ -245,7 +244,7 @@ _id_1",
         "FSL_ExcursionSetMap": dict(
             id="niiri:excursion_set_map_id_1",
             label="Excursion Set Map",
-            location="file://./ExcursionSet.nii.gz",
+            location="ExcursionSet.nii.gz",
             format="image/nifti",
             filename="ExcursionSet.nii.gz",
             cluster_label_map_id="niiri:cluster_label_map_id",
@@ -257,13 +256,13 @@ _id_1",
             ),
         "Image": dict(
             image_id="niiri:excursion_set_png_id_1",
-            location="file://./rendered_thresh_zstat1.png",
+            location="rendered_thresh_zstat1.png",
             filename="rendered_thresh_zstat1.png",
             format="image/png"
             ),
-        "FSL_SignificantCluster-1": dict(
-            cluster_id="niiri:significant_cluster_0001",
-            label="Significant Cluster 0001",
+        "FSL_SupraThresholdCluster-1": dict(
+            cluster_id="niiri:supra_threshold_cluster_0001",
+            label="Supra-Threshold Cluster 0001",
             cluster_size_in_voxels="81",
             cluster_label_id="1",
             cluster_size_in_resels="23.1209189500945",
@@ -274,7 +273,7 @@ _id_1",
             center_of_gravity_id="niiri:center_of_gravity_1",
             label="Center of gravity 1",
             location="niiri:COG_coordinate_0001",
-            cluster_id="niiri:significant_cluster_0001"
+            cluster_id="niiri:supra_threshold_cluster_0001"
             ),
         "FSL_Coordinate-COG1": dict(
             coordinate_id="niiri:COG_coordinate_0001",
@@ -282,9 +281,9 @@ _id_1",
             coord="[ -5.8, 19.1, 38.5 ]",
             coord_in_vox="[ 32.3, 39.2, 31.0 ]",
             ),
-        "FSL_SignificantCluster-2": dict(
-            cluster_id="niiri:significant_cluster_0002",
-            label="Significant Cluster 0002",
+        "FSL_SupraThresholdCluster-2": dict(
+            cluster_id="niiri:supra_threshold_cluster_0002",
+            label="Supra-Threshold Cluster 0002",
             cluster_size_in_voxels="117",
             cluster_label_id="2",
             cluster_size_in_resels="19.4128470430038",
@@ -295,7 +294,7 @@ _id_1",
             center_of_gravity_id="niiri:center_of_gravity_2",
             label="Center of gravity 2",
             location="niiri:COG_coordinate_0002",
-            cluster_id="niiri:significant_cluster_0002"
+            cluster_id="niiri:supra_threshold_cluster_0002"
             ),
         "FSL_Coordinate-COG2": dict(
             coordinate_id="niiri:COG_coordinate_0002",
@@ -303,9 +302,9 @@ _id_1",
             coord="[ -56.9, -57.1, 9.86 ]",
             coord_in_vox="[ 47.1, 19.2, 19.7 ]",
             ),
-        "FSL_SignificantCluster-3": dict(
-            cluster_id="niiri:significant_cluster_0003 ",
-            label="Significant Cluster 0003",
+        "FSL_SupraThresholdCluster-3": dict(
+            cluster_id="niiri:supra_threshold_cluster_0003 ",
+            label="Supra-Threshold Cluster 0003",
             cluster_size_in_voxels="499",
             cluster_label_id="3",
             cluster_size_in_resels="19.4128470430038",
@@ -316,7 +315,7 @@ _id_1",
             center_of_gravity_id="niiri:center_of_gravity_3 ",
             label="Center of gravity 3",
             location="niiri:COG_coordinate_0003 ",
-            cluster_id="niiri:significant_cluster_0003 "
+            cluster_id="niiri:supra_threshold_cluster_0003 "
             ),
         "FSL_Coordinate-COG3 ": dict(
             coordinate_id="niiri:COG_coordinate_0003 ",
@@ -324,9 +323,9 @@ _id_1",
             coord="[ -47.2, 17.3, 9.18 ]",
             coord_in_vox="[ 43.4, 40.3, 23.9 ]",
             ),
-        "FSL_SignificantCluster-4": dict(
-            cluster_id="niiri:significant_cluster_0004 ",
-            label="Significant Cluster 0004",
+        "FSL_SupraThresholdCluster-4": dict(
+            cluster_id="niiri:supra_threshold_cluster_0004 ",
+            label="Supra-Threshold Cluster 0004",
             cluster_size_in_voxels="1203",
             cluster_label_id="4",
             p_value_fwe="8.02e-24",
@@ -336,7 +335,7 @@ _id_1",
             center_of_gravity_id="niiri:center_of_gravity_4",
             label="Center of gravity 4",
             location="niiri:COG_coordinate_0004  ",
-            cluster_id="niiri:significant_cluster_0004  "
+            cluster_id="niiri:supra_threshold_cluster_0004  "
             ),
         "FSL_Coordinate-COG4  ": dict(
             coordinate_id="niiri:COG_coordinate_0004  ",
@@ -350,7 +349,7 @@ _id_1",
             p_uncorr="3.51932e-09",
             location="niiri:coordinate_0004_1",
             equiv_z="5.79",
-            cluster_id="niiri:significant_cluster_0004"
+            cluster_id="niiri:supra_threshold_cluster_0004"
             ),
         "FSL_Coordinate-4-1": dict(
             coordinate_id="niiri:coordinate_0004_1",
@@ -364,7 +363,7 @@ _id_1",
             p_uncorr="9.01048e-09",
             location="niiri:coordinate_0004_2",
             equiv_z="5.63",
-            cluster_id="niiri:significant_cluster_0004"
+            cluster_id="niiri:supra_threshold_cluster_0004"
             ),
         "FSL_Coordinate-4-2": dict(
             coordinate_id="niiri:coordinate_0004_2",
@@ -378,7 +377,7 @@ _id_1",
             p_uncorr="9.54787e-09",
             location="niiri:coordinate_0004_3",
             equiv_z="5.62",
-            cluster_id="niiri:significant_cluster_0004"
+            cluster_id="niiri:supra_threshold_cluster_0004"
             ),
         "FSL_Coordinate-4-3": dict(
             coordinate_id="niiri:coordinate_0004_3",
@@ -392,7 +391,7 @@ _id_1",
             p_uncorr="1.01163e-08",
             location="niiri:coordinate_0004_4",
             equiv_z="5.61",
-            cluster_id="niiri:significant_cluster_0004"
+            cluster_id="niiri:supra_threshold_cluster_0004"
             ),
         "FSL_Coordinate-4-4": dict(
             coordinate_id="niiri:coordinate_0004_4",
@@ -406,7 +405,7 @@ _id_1",
             p_uncorr="1.07176e-08",
             location="niiri:coordinate_0004_5",
             equiv_z="5.6",
-            cluster_id="niiri:significant_cluster_0004"
+            cluster_id="niiri:supra_threshold_cluster_0004"
             ),
         "FSL_Coordinate-4-5": dict(
             coordinate_id="niiri:coordinate_0004_5",
@@ -420,7 +419,7 @@ _id_1",
             p_uncorr="1.34887e-08",
             location="niiri:coordinate_0004_6",
             equiv_z="5.56",
-            cluster_id="niiri:significant_cluster_0004"
+            cluster_id="niiri:supra_threshold_cluster_0004"
             ),
         "FSL_Coordinate-4-6": dict(
             coordinate_id="niiri:coordinate_0004_6",
@@ -434,7 +433,7 @@ _id_1",
             p_uncorr="1.01163e-08",
             location="niiri:coordinate_0003_1",
             equiv_z="5.61",
-            cluster_id="niiri:significant_cluster_0003"
+            cluster_id="niiri:supra_threshold_cluster_0003"
             ),
         "FSL_Coordinate-3-1": dict(
             coordinate_id="niiri:coordinate_0003_1",
@@ -448,7 +447,7 @@ _id_1",
             p_uncorr="1.52768e-07",
             location="niiri:coordinate_0003_2",
             equiv_z="5.12",
-            cluster_id="niiri:significant_cluster_0003"
+            cluster_id="niiri:supra_threshold_cluster_0003"
             ),
         "FSL_Coordinate-3-2": dict(
             coordinate_id="niiri:coordinate_0003_2",
@@ -462,7 +461,7 @@ _id_1",
             p_uncorr="1.82833e-06",
             location="niiri:coordinate_0003_3",
             equiv_z="4.63",
-            cluster_id="niiri:significant_cluster_0003"
+            cluster_id="niiri:supra_threshold_cluster_0003"
             ),
         "FSL_Coordinate-3-3": dict(
             coordinate_id="niiri:coordinate_0003_3",
@@ -476,7 +475,7 @@ _id_1",
             p_uncorr="9.77365e-06",
             location="niiri:coordinate_0003_4",
             equiv_z="4.27",
-            cluster_id="niiri:significant_cluster_0003"
+            cluster_id="niiri:supra_threshold_cluster_0003"
             ),
         "FSL_Coordinate-3-4": dict(
             coordinate_id="niiri:coordinate_0003_4",
@@ -490,7 +489,7 @@ _id_1",
             p_uncorr="1.22151e-05",
             location="niiri:coordinate_0003_5",
             equiv_z="4.22",
-            cluster_id="niiri:significant_cluster_0003"
+            cluster_id="niiri:supra_threshold_cluster_0003"
             ),
         "FSL_Coordinate-3-5": dict(
             coordinate_id="niiri:coordinate_0003_5",
@@ -504,7 +503,7 @@ _id_1",
             p_uncorr="1.89436e-05",
             location="niiri:coordinate_0003_6",
             equiv_z="4.12",
-            cluster_id="niiri:significant_cluster_0003"
+            cluster_id="niiri:supra_threshold_cluster_0003"
             ),
         "FSL_Coordinate-3-6": dict(
             coordinate_id="niiri:coordinate_0003_6",
@@ -518,7 +517,7 @@ _id_1",
             p_uncorr="1.74205e-06",
             location="niiri:coordinate_0002_1",
             equiv_z="4.64",
-            cluster_id="niiri:significant_cluster_0002"
+            cluster_id="niiri:supra_threshold_cluster_0002"
             ),
         "FSL_Coordinate-2-1": dict(
             coordinate_id="niiri:coordinate_0002_1",
@@ -532,7 +531,7 @@ _id_1",
             p_uncorr="4.71165e-06",
             location="niiri:coordinate_0002_2",
             equiv_z="4.43",
-            cluster_id="niiri:significant_cluster_0002"
+            cluster_id="niiri:supra_threshold_cluster_0002"
             ),
         "FSL_Coordinate-2-2": dict(
             coordinate_id="niiri:coordinate_0002_2",
@@ -546,7 +545,7 @@ _id_1",
             p_uncorr="2.01334e-06",
             location="niiri:coordinate_0001_1",
             equiv_z="4.61",
-            cluster_id="niiri:significant_cluster_0001"
+            cluster_id="niiri:supra_threshold_cluster_0001"
             ),
         "FSL_Coordinate-1-1": dict(
             coordinate_id="niiri:coordinate_0001_1",
@@ -560,7 +559,7 @@ _id_1",
             p_uncorr="0.000788846",
             location="niiri:coordinate_0001_2",
             equiv_z="3.16",
-            cluster_id="niiri:significant_cluster_0001"
+            cluster_id="niiri:supra_threshold_cluster_0001"
             ),
         "FSL_Coordinate-1-2": dict(
             coordinate_id="niiri:coordinate_0001_2",
@@ -574,7 +573,7 @@ _id_1",
             p_uncorr="0.00122277",
             location="niiri:coordinate_0001_3",
             equiv_z="3.03",
-            cluster_id="niiri:significant_cluster_0001"
+            cluster_id="niiri:supra_threshold_cluster_0001"
             ),
         "FSL_Coordinate-1-3": dict(
             coordinate_id="niiri:coordinate_0001_3",
@@ -588,7 +587,7 @@ _id_1",
             p_uncorr="0.00554262",
             location="niiri:coordinate_0001_4",
             equiv_z="2.54",
-            cluster_id="niiri:significant_cluster_0001"
+            cluster_id="niiri:supra_threshold_cluster_0001"
             ),
         "FSL_Coordinate-1-4": dict(
             coordinate_id="niiri:coordinate_0001_4",
@@ -598,7 +597,7 @@ _id_1",
             ),
         "FSL_SearchSpaceMaskMap": dict(
             search_space_id="niiri:search_space_mask_id",
-            location="file://./SearchSpaceMask.nii.gz",
+            location="SearchSpaceMask.nii.gz",
             filename="SearchSpaceMask.nii.gz",
             label="Search Space Mask Map",
             user_defined="false",
@@ -621,7 +620,8 @@ fe9bfae278c7fc372b65cac7232ea58fd8fb5914014e7b9a5d6200592b12b2a728b",
             label="NIDM-Results",
             object_model="nidm:NIDM_0000027",
             version="1.1.0",
-            time="2014-05-19T10:30:00.000+01:00"
+            time="2014-05-19T10:30:00.000+01:00",
+            export_id="niiri:export_id"
             ),
         "FSL_Software": dict(
             software_id="niiri:software_id",
@@ -633,7 +633,7 @@ fe9bfae278c7fc372b65cac7232ea58fd8fb5914014e7b9a5d6200592b12b2a728b",
         "GrandMeanMap": dict(
             grand_mean_map_id="niiri:grand_mean_map_id",
             label="Grand Mean Map",
-            location="file://./GrandMean.nii.gz",
+            location="GrandMean.nii.gz",
             filename="GrandMean.nii.gz",
             format="image/nifti",
             masked_median="9597.36",
@@ -641,6 +641,17 @@ fe9bfae278c7fc372b65cac7232ea58fd8fb5914014e7b9a5d6200592b12b2a728b",
             sha="7a2703cea740e27a5170fb19e4a09b5e815e4b7e477bc75958404d675aa40\
 8f53f747892a2ef4472f933cf5f12cd21cea99d5f5e551938081636fb6d4049473e",
             model_pe_id="niiri:model_parameters_estimation_id"
+            ),
+        "ExporterSoftware": dict(
+            software_id="niiri:exporter_id",
+            software_type="nidm:NIDM_0000167",
+            label="nidmfsl",
+            version="0.2.0"
+            ),
+        "Export": dict(
+            export_id="niiri:export_id",
+            label="NIDM-Results export",
+            exporter_id="niiri:exporter_id"
             )
         }
 

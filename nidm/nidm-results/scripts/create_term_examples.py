@@ -16,7 +16,11 @@ NIDMRESULTSPATH = os.path.dirname(RELPATH)
 sys.path.append(os.path.join(NIDMRESULTSPATH, os.pardir, os.pardir, "scripts"))
 from Constants import STATO_OLS_STR, STATO_OLS_LABEL, STATO_TSTATISTIC_STR, \
     STATO_TSTATISTIC_LABEL, OBO_P_VALUE_FWER_QNAME, OBO_Q_VALUE_FDR_QNAME, \
-    NIDM_P_VALUE_UNCORRECTED_QNAME, OBO_STATISTIC_QNAME
+    NIDM_P_VALUE_UNCORRECTED_QNAME, OBO_STATISTIC_QNAME, \
+    NIDM_FINITE_IMPULSE_RESPONSE_HRB, SPM_CANONICAL_HRF, \
+    SPM_TEMPORAL_DERIVATIVE, SPM_DISPERSION_DERIVATIVE, \
+    NIDM_SPATIALLY_LOCAL_MODEL, NIDM_SPATIALLY_GLOBAL_MODEL, \
+    STATO_UNSTRUCTURED_COVARIANCE
 
 
 def main():
@@ -27,7 +31,8 @@ def main():
             label="NIDM-Results",
             object_model="nidm:NIDM_0000027",
             version="1.1.0",
-            time="2014-05-19T10:30:00.000+01:00"
+            time="2014-05-19T10:30:00.000+01:00",
+            export_id="niiri:export_id"
             ),
         "SPM_Software": dict(
             software_id="niiri:spm_software_id",
@@ -42,11 +47,28 @@ def main():
             version="5.0.1",
             feat_version="6.00"
             ),
+        "ExporterSoftware-FSL": dict(
+            software_id="niiri:exporter_id",
+            software_type="nidm:NIDM_0000167",
+            label="nidmfsl",
+            version="0.2.0"
+            ),
+        "Export": dict(
+            export_id="niiri:export_id",
+            label="NIDM-Results export",
+            exporter_id="niiri:exporter_id"
+            ),
+        "ExporterSoftware-SPM": dict(
+            software_id="niiri:exporter_id",
+            software_type="nidm:NIDM_0000168",
+            label="spm_results_nidm",
+            version="12b.5858"
+            ),
         "DesignMatrix": dict(
             comment="Design Matrix: Group Level",
             design_matrix_id='niiri:design_matrix_id',
             label="Design Matrix",
-            location="file:///path/to/DesignMatrix.csv",
+            location="DesignMatrix.csv",
             format="text/csv",
             filename="DesignMatrix.csv",
             design_matrix_png_id="niiri:design_matrix_png_id"),
@@ -54,12 +76,35 @@ def main():
             comment="Design Matrix: Subject Level",
             design_matrix_id='niiri:first_level_design_matrix_id',
             label="First-Level Design Matrix",
-            location="file:///path/to/DesignMatrix.csv",
+            location="DesignMatrix.csv",
             format="text/csv",
             filename="DesignMatrix.csv",
             design_matrix_png_id="niiri:design_matrix_png_id",
-            design="nidm:NIDM_0000152",  # block-based design
             hrf_basis="niiri:hrf_basis_id",
+            drift_model="niiri:drift_model_id",
+            regressors="[\\\"Sn(1) active*bf(1)\\\",\\\"Sn(1) constant\\\"]"),
+        "DesignMatrix_1stLevel-FIR": dict(
+            comment="HRF: FIR Basis Set",
+            design_matrix_id='niiri:first_level_design_matrix_id',
+            label="First-Level Design Matrix",
+            location="DesignMatrix.csv",
+            format="text/csv",
+            filename="DesignMatrix.csv",
+            design_matrix_png_id="niiri:design_matrix_png_id",
+            hrf_basis=NIDM_FINITE_IMPULSE_RESPONSE_HRB,
+            drift_model="niiri:drift_model_id",
+            regressors="[\\\"Sn(1) active*bf(1)\\\",\\\"Sn(1) constant\\\"]"),
+        "DesignMatrix_1stLevel_HRFBasis2_HRFBasis3-InformedBasisSet": dict(
+            comment="HRF: SPM's Informed Basis Set",
+            design_matrix_id='niiri:first_level_design_matrix_id',
+            label="First-Level Design Matrix",
+            location="DesignMatrix.csv",
+            format="text/csv",
+            filename="DesignMatrix.csv",
+            design_matrix_png_id="niiri:design_matrix_png_id",
+            hrf_basis=SPM_CANONICAL_HRF,
+            hrf_basis_2=SPM_TEMPORAL_DERIVATIVE,
+            hrf_basis_3=SPM_DISPERSION_DERIVATIVE,
             drift_model="niiri:drift_model_id",
             regressors="[\\\"Sn(1) active*bf(1)\\\",\\\"Sn(1) constant\\\"]"),
         "Map_atLocation-nii": dict(
@@ -69,7 +114,7 @@ def main():
             filename='image.nii',
             coordinate_space_id="niiri:coordinate_space_id",
             sha="e43b6e01b0463fe7d40782137867ae43b6e01b0463fe7d40782137867a",
-            location="file://./image.nii"),
+            location="image.nii"),
         "Map_atLocation_hasMapHeader-img": dict(
             comment="Map: Nifti (.img)",
             map_type="nidm:NIDM_0000052",
@@ -78,17 +123,17 @@ def main():
             coordinate_space_id="niiri:coordinate_space_id",
             sha="e43b6e01b0463fe7d40782137867ae43b6e01b0463fe7d40782137867a",
             map_header="niiri:map_header_id",
-            location="file://./image.img"),
+            location="image.img"),
         "MapHeader": dict(
             comment="Map Header: Nifti header (.hdr)",
             map_header_id="niiri:map_header_id",
             filename='image.hdr',
             sha="e43b6e01b0463fe7d40782137867ae43b6e01b0463fe7d40782137867a",
-            location="file://./image.hdr"),
+            location="image.hdr"),
         "Image-DesignMatrix": dict(
             comment="Image: Design Matrix",
             image_id="niiri:design_matrix_png_id",
-            location="file://./DesignMatrix.png",
+            location="DesignMatrix.png",
             filename="DesignMatrix.png",
             format="image/png"
             ),
@@ -108,6 +153,15 @@ def main():
             dependence="nidm:NIDM_0000048",
             dependence_spatial="nidm:NIDM_0000073"
             ),
+        "ErrorModel-SPMnonSphericity": dict(
+            comment="Error Model: SPM non sphericity",
+            error_model_id="niiri:error_model_id",
+            noise_distribution="obo:STATO_0000227",
+            variance_homo="false",
+            variance_spatial=NIDM_SPATIALLY_LOCAL_MODEL,
+            dependence=STATO_UNSTRUCTURED_COVARIANCE,
+            dependence_spatial=NIDM_SPATIALLY_GLOBAL_MODEL
+            ),
         "ModelParametersEstimation": dict(
             comment="Model Parameters Estimation",
             model_pe_id="niiri:model_pe_id",
@@ -123,32 +177,32 @@ def main():
             comment="Parameter Estimate Map",
             beta_map_id="niiri:beta_map_id_1",
             label="Beta Map 1",
-            location="file:///path/to/ParameterEstimate_0001.nii.gz",
+            location="ParameterEstimate_0001.nii.gz",
             filename="ParameterEstimate_0001.nii.gz",
             format="image/nifti",
             coordinate_space_id="niiri:coordinate_space_id_1",
-            sha="e43b6e01b0463fe7d40782137867a...",
+            sha="e43b6e01b0463fe7d40782137867a",
             param_est_id="niiri:model_pe_id"),
         "ResidualMeanSquaresMap": dict(
             comment="Residual Mean Squares Map",
             residual_mean_squares_map_id="niiri:residual_mean_squares_map_id",
             label="Residual Mean Squares Map",
-            location="file:///path/to/ResidualMeanSquares.nii.gz",
+            location="ResidualMeanSquares.nii.gz",
             filename="ResidualMeanSquares.nii.gz",
             format="image/nifti",
             coordinate_space_id="niiri:coordinate_space_id_1",
-            sha="e43b6e01b0463fe7d40782137867a...",
+            sha="e43b6e01b0463fe7d40782137867a",
             param_est_id="niiri:model_pe_id"),
         "MaskMap": dict(
             comment="Mask Map",
             mask_id="niiri:mask_id_2",
             user_defined="false",
             label="Mask",
-            location="file:///path/to/Mask.nii.gz",
+            location="Mask.nii.gz",
             filename="Mask.nii.gz",
             format="image/nifti",
             coordinate_space_id="niiri:coordinate_space_id_1",
-            sha="e43b6e01b0463fe7d40782137867a...",
+            sha="e43b6e01b0463fe7d40782137867a",
             used_by_act_id="niiri:model_pe_id"),
         "ContrastWeights": dict(
             comment="Contrast Weights",
@@ -172,29 +226,29 @@ def main():
             comment="Contrast Map",
             contrast_map_id="niiri:contrast_map_id",
             label="Contrast Map: listening > rest",
-            location="file:///path/to/Contrast.nii.gz",
+            location="Contrast.nii.gz",
             format="image/nifti",
             filename="Contrast.nii.gz",
             contrast_name="listening > rest",
             coordinate_space_id="niiri:coordinate_space_id_1",
-            sha="e43b6e01b0463fe7d40782137867a...",
+            sha="e43b6e01b0463fe7d40782137867a",
             contrast_est_id="niiri:contrast_estimation_id"),
         "ContrastStandardErrorMap": dict(
             comment="Contrast Standard Error Map",
             contrast_standard_error_map_id="niiri:contrast_standard_error_map_\
 id",
             label="Contrast Standard Error Map",
-            location="file:///path/to/ContrastStandardError.nii.gz",
+            location="ContrastStandardError.nii.gz",
             format="image/nifti",
             filename="ContrastStandardError.nii.gz",
             coordinate_space_id="niiri:coordinate_space_id_1",
-            sha="e43b6e01b0463fe7d40782137867a...",
+            sha="e43b6e01b0463fe7d40782137867a",
             contrast_est_id="niiri:contrast_estimation_id"),
         "StatisticMap_T": dict(
             comment="Statistic Map: T",
             statistic_map_id="niiri:statistic_map_id",
             label="Statistic Map: listening > rest",
-            location="file:///path/to/TStatistic.nii.gz",
+            location="TStatistic.nii.gz",
             format="image/nifti",
             filename="TStatistic.nii.gz",
             statistic_type=STATO_TSTATISTIC_STR,
@@ -202,7 +256,7 @@ id",
             contrast_name="listening > rest",
             error_dof="72.9999999990787",
             effect_dof="1",
-            sha="e43b6e01b0463fe7d40782137867a...",
+            sha="e43b6e01b0463fe7d40782137867a",
             coordinate_space_id="niiri:coordinate_space_id_1",
             contrast_est_id="niiri:contrast_estimation_id"),
         "HeightThreshold_equivThresh-FWER": dict(
@@ -267,17 +321,17 @@ id",
             comment="Resels per Voxel Map",
             resels_per_voxel_map_id="niiri:resels_per_voxel_map_id",
             label="Resels per Voxel Map",
-            location="file:///path/to/ReselsPerVoxel.nii.gz",
+            location="ReselsPerVoxel.nii.gz",
             filename="ReselsPerVoxel.nii.gz",
             format="image/nifti",
             coordinate_space_id="niiri:coordinate_space_id_1",
-            sha="e43b6e01b0463fe7d40782137867a...",
+            sha="e43b6e01b0463fe7d40782137867a",
             model_pe_id="niiri:model_pe_id"
             ),
         "ClusterLabelsMap": dict(
             comment="Cluster Labels Map",
             cluster_label_map_id="niiri:cluster_label_map_id",
-            location="file:///path/to/ClusterLabels.nii.gz",
+            location="ClusterLabels.nii.gz",
             filename="ClusterLabels.nii.gz",
             format="image/nifti"
             ),
@@ -285,11 +339,11 @@ id",
             comment="Display Mask Map",
             display_map_id="niiri:display_map_id",
             label="Display Mask Map",
-            location="file:///path/to/DisplayMask.nii.gz",
+            location="DisplayMask.nii.gz",
             filename="DisplayMask.nii.gz",
             format="image/nifti",
             coordinate_space_id="niiri:coordinate_space_id_2",
-            sha="e43b6e01b0463fe7d40782137867a..."
+            sha="e43b6e01b0463fe7d40782137867a"
             ),
         "PeakDefinitionCriteria_MaxPeaks": dict(
             comment="Peak Definition Criteria",
@@ -320,26 +374,57 @@ id",
             peak_def_id="niiri:peak_definition_criteria_id",
             cluster_def_id="niiri:cluster_definition_criteria_id"
             ),
+        "ConjunctionInference": dict(
+            comment="Conjunction Inference",
+            conj_inference_id="niiri:inference_id",
+            label="Conjunction Inference",
+            alternative_hyp="nidm:NIDM_0000060",
+            stat_map_id_1="niiri:statistic_map_id",
+            stat_map_id_2="niiri:statistic_map_id_2",
+            height_thresh_id="niiri:height_threshold_id",
+            extent_thresh_id="niiri:extent_threshold_id",
+            display_mask_id="niiri:display_map_id",
+            peak_def_id="niiri:peak_definition_criteria_id",
+            cluster_def_id="niiri:cluster_definition_criteria_id",
+            mask_id="niiri:mask_id_1",
+            software_id="niiri:software_id"
+            ),
+        "SPM_KConjunctionInference": dict(
+            comment="SPM's Partial Conjunction Inference",
+            conj_inference_id="niiri:conjunction_id_2",
+            label="SPM's Partial Conjunction Inference",
+            alternative_hyp="nidm:NIDM_0000060",
+            stat_map_id_1="niiri:statistic_map_id_1",
+            stat_map_id_2="niiri:statistic_map_id_2",
+            global_null_degree="1",
+            height_thresh_id="niiri:height_threshold_id",
+            extent_thresh_id="niiri:extent_threshold_id",
+            display_mask_id="niiri:display_map_id",
+            peak_def_id="niiri:peak_definition_criteria_id",
+            cluster_def_id="niiri:cluster_definition_criteria_id",
+            mask_id="niiri:mask_id_1",
+            software_id="niiri:software_id"
+            ),
         "ExcursionSetMap": dict(
             comment="Excursion Set Map",
             id="niiri:excursion_set_map_id",
             label="Excursion Set Map",
-            location="file:///path/to/ExcursionSet.nii.gz",
+            location="ExcursionSet.nii.gz",
             format="image/nifti",
             filename="ExcursionSet.nii.gz",
             cluster_label_map_id="niiri:cluster_label_map_id",
             max_intensity_projection_id="niiri:maximum_intensity_projection_\
 id",
             coordinate_space_id="niiri:coordinate_space_id_1",
-            sha="e43b6e01b0463fe7d40782137867a...",
+            sha="e43b6e01b0463fe7d40782137867a",
             num_of_clusters="8",
             p_value="8.95949980872501e-14",
             inference_id="niiri:inference_id"
             ),
-        "SignificantCluster": dict(
-            comment="Significant Cluster",
-            cluster_id="niiri:significant_cluster_0001",
-            label="Significant Cluster 0001",
+        "SupraThresholdCluster": dict(
+            comment="Supra-Threshold Cluster",
+            cluster_id="niiri:supra_threshold_cluster_0001",
+            label="Supra-Threshold Cluster 0001",
             cluster_size_in_voxels="530",
             cluster_label_id="1",
             cluster_size_in_resels="23.1209189500945",
@@ -358,7 +443,7 @@ id",
             p_uncorr="4.44089209850063e-16",
             p_value_fwe="0",
             p_value_fdr="6.3705194444993e-11",
-            cluster_id="niiri:significant_cluster_0001"
+            cluster_id="niiri:supra_threshold_cluster_0001"
             ),
         "Coordinate": dict(
             comment="Coordinate",
@@ -369,7 +454,7 @@ id",
         "SearchSpaceMaskMap": dict(
             comment="Search Space Mask Map",
             search_space_id="niiri:search_space_mask_id",
-            location="file:///path/to/SearchSpaceMask.nii.gz",
+            location="SearchSpaceMask.nii.gz",
             filename="SearchSpaceMask.nii.gz",
             label="Search Space Mask Map",
             format="image/nifti",
@@ -391,7 +476,7 @@ id",
             noise_fwhm_in_units="[ 8.87643567497404, 8.89885340008753, \
 7.83541276878791 ]",
             random_field_station="false",
-            sha="e43b6e01b0463fe7d40782137867a...",
+            sha="e43b6e01b0463fe7d40782137867a",
             inference_id="niiri:inference_id"
             ),
         "FSL_ClusterCenterOfGravity": dict(
@@ -399,7 +484,7 @@ id",
             center_of_gravity_id="niiri:center_of_gravity_1",
             location="niiri:coordinate_0001",
             label="Center of gravity",
-            cluster_id="niiri:significant_cluster_0001",
+            cluster_id="niiri:supra_threshold_cluster_0001",
             ),
         "CoordinateSpace": dict(
             comment="Coordinate Space",
@@ -415,7 +500,7 @@ id",
         "Image": dict(
             comment="Image",
             image_id="niiri:maximum_intensity_projection_id",
-            location="file:///path/to/MaximumIntensityProjection.png",
+            location="MaximumIntensityProjection.png",
             filename="MaximumIntensityProjection.png",
             format="image/png"
             ),
@@ -423,12 +508,12 @@ id",
             comment="Grand Mean Map",
             grand_mean_map_id="niiri:grand_mean_map_id",
             label="Grand Mean Map",
-            location="file:///path/to/GrandMean.nii.gz",
+            location="GrandMean.nii.gz",
             filename="GrandMean.nii.gz",
             format="image/nifti",
             masked_median="115",
             coordinate_space_id="niiri:coordinate_space_id_1",
-            sha="e43b6e01b0463fe7d40782137867a...",
+            sha="e43b6e01b0463fe7d40782137867a",
             model_pe_id="niiri:model_pe_id"
             ),
         "SPM_DriftModel": dict(

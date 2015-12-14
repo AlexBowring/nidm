@@ -15,7 +15,6 @@ nidm:NIDM_0000006,nidm_Cluster
 nidm:NIDM_0000007,nidm_ClusterDefinitionCriteria
 nidm:NIDM_0000008,nidm_ClusterLabelsMap
 nidm:NIDM_0000009,nidm_Colin27CoordinateSystem
-nidm:NIDM_0000010,nidm_hasfMRIDesign
 nidm:NIDM_0000011,nidm_ConjunctionInference
 nidm:NIDM_0000012,nidm_ConnectivityCriterion
 nidm:NIDM_0000013,nidm_ContrastStandardErrorMap
@@ -75,7 +74,7 @@ nidm:NIDM_0000066,nidm_ResidualMeanSquaresMap
 nidm:NIDM_0000067,nidm_CustomBasisSet
 nidm:NIDM_0000068,nidm_SearchSpaceMaskMap
 nidm:NIDM_0000069,nidm_FourierBasisSet
-nidm:NIDM_0000070,nidm_SignificantCluster
+nidm:NIDM_0000070,nidm_SupraThresholdCluster
 nidm:NIDM_0000071,nidm_ErrorParameterMapWiseDependence
 nidm:NIDM_0000072,nidm_ConstantParameter
 nidm:NIDM_0000073,nidm_IndependentParameter
@@ -157,10 +156,6 @@ nidm:NIDM_0000148,nidm_reselSizeInVoxels
 nidm:NIDM_0000149,nidm_searchVolumeInResels
 nidm:NIDM_0000150,nidm_LinearSplineBasisSet
 nidm:NIDM_0000151,nidm_SineBasisSet
-nidm:NIDM_0000152,nidm_BlockBasedDesign
-nidm:NIDM_0000153,nidm_EventRelatedDesign
-nidm:NIDM_0000154,nidm_MixedDesign
-nidm:NIDM_0000155,nidm_fMRIDesignType
 nidm:NIDM_0000156,nidm_clusterSizeInResels
 nidm:NIDM_0000157,nidm_noiseFWHMInUnits
 nidm:NIDM_0000158,nidm_noiseFWHMInVertices
@@ -169,6 +164,11 @@ nidm:NIDM_0000160,nidm_PValueUncorrected
 nidm:NIDM_0000161,nidm_equivalentThreshold
 nidm:NIDM_0000162,nidm_Threshold
 nidm:NIDM_0000163,nidm_ContrastExplainedMeanSquareMap
+nidm:NIDM_0000164,nidm_NeuroimagingAnalysisSoftware
+nidm:NIDM_0000165,nidm_NIDMResultsExporter
+nidm:NIDM_0000166,nidm_NIDMResultsExport
+nidm:NIDM_0000167,nidm_nidmfsl
+nidm:NIDM_0000168,nidm_spm_results_nidm
 spm:SPM_0000001,spm_SPMsDriftCutoffPeriod
 spm:SPM_0000002,spm_DCTDriftModel
 spm:SPM_0000003,spm_SPMsDispersionDerivative

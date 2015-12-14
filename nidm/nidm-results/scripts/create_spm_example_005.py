@@ -14,12 +14,12 @@ def main():
 		"DisplayMaskMap": dict(
 			display_map_id="niiri:display_map_id",
 			label="Display Mask Map",
-			location="file://./DisplayMask.nii.gz",
+			location="DisplayMask.nii.gz",
 			user_defined="true",
 			filename="DisplayMask.nii.gz",
 			format="image/nifti",
 			coordinate_space_id="niiri:coordinate_space_id_1",
-			sha="e43b6e01b0463fe7d40782137867a..."
+			sha="e43b6e01b0463fe7d40782137867a"
 			),
 		"CoordinateSpace-1": dict(
 			coordinate_space_id="niiri:coordinate_space_id_1",

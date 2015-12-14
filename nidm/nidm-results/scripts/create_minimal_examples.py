@@ -25,7 +25,7 @@ def f_test():
         "ContrastExplainedMeanSquareMap": dict(
             id="niiri:contrast_explained_mean_square_map_id",
             label="Contrast Explained Mean Square Map",
-            location="file://./ContrastExplainedMeanSquareMap_F001.nii.gz",
+            location="ContrastExplainedMeanSquareMap_F001.nii.gz",
             filename="ContrastExplainedMeanSquareMap_F001.nii.gz",
             format="image/nifti",
             coordinate_space_id="",
@@ -55,12 +55,11 @@ def design_matrix_event_related():
         "DesignMatrix_1stLevel": dict(
             design_matrix_id='niiri:design_matrix_id',
             label="Design Matrix",
-            location="file://./DesignMatrix.csv",
+            location="DesignMatrix.csv",
             format="text/csv",
             filename="DesignMatrix.csv",
             design_matrix_png_id="niiri:design_matrix_png_id",
             regressors="",
-            design=q_graph.qname(NIDM_EVENT_RELATED_DESIGN),
             hrf_basis="",
             drift_model=""),
         "ActivityUsedEntity": dict(
